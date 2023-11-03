@@ -1,0 +1,41 @@
+:root {
+    --primario: #bcec4c;
+    --secundario: #6cacdc;
+    --link: #2c7c44;
+    --bg-primario:#947c6c;
+    --bg-secundario:#b49c94;
+}
+
+.container {
+    background-color: var(--bg-secundario);
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.game {
+    background-color: var(--bg-primario);
+    color: var(--secundario);
+    border: 1px solid var(--bg-secundario);
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.game__title{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.game__img {
+    width: 80%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
