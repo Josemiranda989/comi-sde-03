@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs', {estilosEspecificos: 'detail.css', title: 'Detail'}) %>
+
+
+<body>
+    <%- include('./partials/header.ejs') %>
+
+    <main class="container">
+        <img class="product-img" src="https://www.freetogame.com/g/540/thumbnail.jpg" alt="game-img">
+        <div class="description">
+            <h3><%= producto.nombre %></h3>
+            <p>Price: $<%= producto.precio %></p>
+            <button class="description__btn">Buy</button>
+        </div>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

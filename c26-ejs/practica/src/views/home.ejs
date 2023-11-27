@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs', {estilosEspecificos: 'home.css', title: 'Home'}) %>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+        <section class="container">
+            
+            <%# Iteracion de productos %>
+            <% productos.forEach(producto => { %>
+                <article class="game">
+                    <h3 class="game__title"><a href="https://www.freetogame.com/open/overwatch-2"><%= producto.nombre %></a></h3>
+                    <p>$<%= producto.precio * 0.8 %></p>
+                    <img class="game__img" src="https://www.freetogame.com/g/540/thumbnail.jpg" alt="juego">
+                    <% if (admin) { %>
+                        <button>Borrar pedido</button>
+                    <% } %>
+                </article>
+            <% }) %>
+
+        </section>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
