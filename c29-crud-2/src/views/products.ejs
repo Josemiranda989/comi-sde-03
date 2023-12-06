@@ -14,8 +14,8 @@
 				<h2 class="products-title">Todos los productos</h2>
 			</div>
 		
-			<% products.forEach(product => { %>
 			<div class="col-12 col-sm-6 col-lg-3">
+				<% products.forEach(product => { %>
 					<section class="product-box">
 						<a href="/products/detail/<%= product.id %>">
 							<figure class="product-box_image">
@@ -29,8 +29,8 @@
 							</article>
 						</a>
 					</section>
-				</div>
 				<% }) %>
+			</div>
 		
 		</div>
 	</div>

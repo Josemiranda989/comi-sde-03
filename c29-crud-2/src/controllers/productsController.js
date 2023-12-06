@@ -4,7 +4,7 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -70,12 +70,7 @@ const controller = {
 
 	// Delete - Delete one product from DB
 	destroy: (req, res) => {
-		const id = req.params.id
-		// Buscar el producto a eliminar
-		products = products.filter(product => product.id != id)
-		// Eliminar la imagen si es que no es una por defecto
-		fs.writeFileSync(productsFilePath, JSON.stringify(products, null,  ' '))
-		res.redirect('/products')
+		// Do the magic
 	}
 };
 
