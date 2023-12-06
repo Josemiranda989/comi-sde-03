@@ -18,9 +18,9 @@
 				<h2 class="products-title">Basado en tu última visita</h2>
 			</div>
 			<!-- Show the "visited" products -->
+			<% visited.forEach(product => { %>
 			<div class="col-12 col-sm-6 col-lg-3">
 
-				<% visited.forEach(product => { %>
 					<section class="product-box">
 						<a href="/products/detail/<%= product.id %>">
 							<figure class="product-box_image">
@@ -34,9 +34,9 @@
 							</article>
 						</a>
 					</section>
+					
+				</div>
 				<% }) %>
-
-			</div>
 		</div>
 	</div>
 	<!-- /ultima visita -->
@@ -48,8 +48,8 @@
 				<h2 class="products-title">Ofertas</h2>
 			</div>
 			<!-- Show the "in-sale" products -->
+			<% inSale.forEach(product => { %>
 			<div class="col-12 col-sm-6 col-lg-3">
-				<% inSale.forEach(product => { %>
 					<section class="product-box">
 						<a href="/products/detail/<%= product.id %>">
 							<figure class="product-box_image">
@@ -63,8 +63,8 @@
 							</article>
 						</a>
 					</section>
+				</div>
 				<% }) %>
-			</div>
 		</div>
 	</div>
 	<!-- /Ofertas -->

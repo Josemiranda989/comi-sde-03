@@ -1,16 +1,16 @@
-const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
+		let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 		res.render('products.ejs', { products: products })
 	},
 
@@ -35,7 +35,7 @@ const controller = {
 			// id: Date.now(),
 			id: uuidv4(),
 			...req.body,
-			image: 'default-image.png'
+			image: req.file?.filename || 'default-image.png'
 		}
 		products.push(newProduct)
 
@@ -49,7 +49,10 @@ const controller = {
 	edit: (req, res) => {
 		let id = req.params.id
 		let product = products.find(product => product.id == id)
-		res.render('product-edit-form.ejs', { product })
+		if(product){
+			return res.render('product-edit-form.ejs', { product })
+		} 
+		return res.send('El producto a editar no existe')
 	},
 	// Update - Method to update
 	update: (req, res) => {
@@ -58,9 +61,9 @@ const controller = {
 		if (product) {
 			product.name = req.body.name || product.name
 			product.price = req.body.price || product.price
-			product.description = req.body.description|| product.description
+			product.description = req.body.description || product.description
 			product.category = req.body.category || product.category
-			product.image = req.body.image || product.image
+			product.image = req.file?.filename || product.image
 			product.discount = req.body.discount || product.discount
 
 			fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
@@ -70,31 +73,20 @@ const controller = {
 
 	// Delete - Delete one product from DB
 	destroy: (req, res) => {
-		// Do the magic
+		// obtenemos id por params
+		const id = req.params.id
+		// buscamos el producto a eliminar para obtener el nombre de la imagen
+		const pDelete = products.find(product => product.id == id)
+		// Si la imagen no coincide con la imagen por default que la elimine
+		if (pDelete.image != 'default-image.png') {
+			fs.unlinkSync(path.join(__dirname, '../../public/images/products', pDelete.image))
+		}
+		// eliminamos de listado el product a eliminar
+		products = products.filter(product => product.id != id)
+		// reescribimos el json con los productos
+		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
+		res.redirect('/products')
 	}
 };
 
 module.exports = controller;
-
-
-/* update: (req, res) => {
-    const id = req.params.id;
-    const productIndex = products.findIndex(product => product.id == id);
-
-    if (productIndex !== -1) {
-        // Crear un nuevo objeto product utilizando el spread operator
-        const updatedProduct = {
-            ...products[productIndex],
-            ...req.body
-        };
-
-        // Actualizar el objeto en el array
-        products[productIndex] = updatedProduct;
-
-        // Guardar en el archivo o realizar otras acciones necesarias
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-
-        // Redireccionar o enviar respuesta según sea necesario
-        res.redirect('/products');
-    }
-} */
