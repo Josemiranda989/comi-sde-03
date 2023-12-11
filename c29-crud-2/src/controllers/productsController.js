@@ -16,7 +16,7 @@ const controller = {
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		let id = req.params.id //guardamos el id que viene por params
+		let {id} = req.params //guardamos el id que viene por params
 		let product = products.find(product => product.id == id) //buscamos el producto
 		if (product) { //preguntamos si existe
 			return res.render('detail.ejs', { product })
@@ -31,17 +31,27 @@ const controller = {
 
 	// Create -  Method to store
 	store: (req, res) => {
+		// Obtenemos los campos del body con destructuring
+		const {name, price, discount, category, description} = req.body
+		// Creamos un nuevo producto con todos los campos 
 		const newProduct = {
 			// id: Date.now(),
 			id: uuidv4(),
-			...req.body,
+			name: name,
+			//name: req.body.name,
+			price: price,
+			discount: discount,
+			category: category,
+			description: description,
 			image: req.file?.filename || 'default-image.png'
 		}
+		// Agregamos ese producto nuevo al listado
 		products.push(newProduct)
-
+		//  Convertimos en json el listado
 		let productsJSON = JSON.stringify(products, null, ' ')
+		// Sobreescribimos json con el nuevo listado
 		fs.writeFileSync(productsFilePath, productsJSON)
-
+		// redireccionamos
 		res.redirect('/products')
 	},
 
@@ -56,18 +66,26 @@ const controller = {
 	},
 	// Update - Method to update
 	update: (req, res) => {
-		const id = req.params.id
+		// obtenemos el id por params para buscar un producto a editar
+		const {id} = req.params
+		// obtenemos los datos del formulario por body
+		const {name, price, discount, category, description} = req.body
+		// buscamos el producto a actualizar en base a el id del producto y el id que viene por params
 		const product = products.find(product => product.id == id)
+		// Si lo encuentra
 		if (product) {
-			product.name = req.body.name || product.name
-			product.price = req.body.price || product.price
-			product.description = req.body.description || product.description
-			product.category = req.body.category || product.category
+			product.name = name || product.name
+			product.price = price || product.price
+			product.description = description || product.description
+			product.category = category || product.category
+			product.discount = discount || product.discount
 			product.image = req.file?.filename || product.image
-			product.discount = req.body.discount || product.discount
-
+			// convertimos a json y luego sobreescribimos el json database
 			fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
+			// redirigimos al listo de productos
 			res.redirect('/products')
+		} else {
+			res.send('El producto no se actualizar')
 		}
 	},
 
