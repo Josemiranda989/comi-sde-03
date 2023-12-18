@@ -10,7 +10,6 @@ const controller = {
 	index: (req, res) => {
 		let inSale = products.filter(product => product.category == 'in-sale')
 		let visited = products.filter(product => product.category == 'visited')
-
 		res.render('index.ejs', { inSale: inSale, visited: visited, toThousand:toThousand })
 	},
 	search: (req, res) => {

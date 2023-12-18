@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
-const logs = require('./middlewares/logs')
+const methodOverride = require('method-override'); // Pasar poder usar los métodos PUT y DELETE
+const logs = require('./middlewares/logs');
+const session = require('express-session')
+const rememberme = require('./middlewares/rememberme')
 
 
 // ************ express() - (don't touch) ************
@@ -19,6 +21,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 app.use(logs) //Hacer un seguimiento del usuario por nuestra aplicación
+app.use(session({ secret: "No hay plata", resave: true, saveUninitialized: false }))
+app.use(rememberme)
 
 // ************ Template Engine - (don't touch) ************
 app.set('view engine', 'ejs');
@@ -30,10 +34,11 @@ app.set('views', path.join(__dirname, '/views')); // Define la ubicación de la 
 // ************ Route System require and use() ************
 const mainRouter = require('./routes/mainRoutes'); // Rutas main
 const productsRouter = require('./routes/productsRoutes'); // Rutas /products
+const usersRouter = require('./routes/usersRoutes'); // Rutas /products
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
-// app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 
 // ************ DON'T TOUCH FROM HERE ************
 // ************ catch 404 and forward to error handler ************

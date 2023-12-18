@@ -8,6 +8,8 @@ const upload = require('../middlewares/multer')
 const validateProducts = require('../middlewares/validateProducts');
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
+// ************ Middlewares Require ************
+const adminLogged = require('../middlewares/adminLogged')
 
 /*** GET ALL PRODUCTS ***/ 
 router.get('/', productsController.index); 
@@ -16,11 +18,11 @@ router.get('/', productsController.index);
 router.get('/detail/:id', productsController.detail); 
 
 /*** CREATE ONE PRODUCT ***/ 
-router.get('/create', productsController.create); 
+router.get('/create', adminLogged,productsController.create); 
 router.post('/create', upload.single('img'), validateProducts, productsController.store); 
 
 /*** EDIT ONE PRODUCT ***/ 
-router.get('/edit/:id', productsController.edit); 
+router.get('/edit/:id', adminLogged,productsController.edit); 
 router.put('/edit/:id', upload.single('img'), validateProducts,productsController.update); 
 
 

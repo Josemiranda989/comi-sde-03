@@ -17,8 +17,9 @@
 		<div class="product-detail">
 			<div class="row">
 				<div class="col-12 col-lg-4">
-                        <h1>El usuario que inició sesión es: ----</h1>
-                        <p2>Su mail corresponde a: ------- y su password ---------</p2>
+                        <h1>El usuario que inició sesión es: <%= userLogged.userName %></h1>
+                        <h2>Su mail corresponde a: <%= userLogged.email %></h2>
+						<a href="/users/logout">Cerrar sesion</a>
 				</div>
 			</div>
 		</div>

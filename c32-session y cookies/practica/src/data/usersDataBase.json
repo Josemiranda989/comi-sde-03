@@ -1,3 +1,16 @@
 [
-    
+  {
+    "id": "1c00f05b-accc-4e21-aa2e-d43261ff89b5",
+    "userName": "pepe",
+    "email": "sapopepe@gmail.com",
+    "password": "$2a$10$sCwcuCbNhJl4O2rfhOzeIuyvNSCcfoPyLx.l6eMxlXRxPG35/WIie",
+    "admin": false
+  },
+  {
+    "id": "cb7d5fd1-3840-4b1f-8658-b5de20ce5281",
+    "userName": "admin@gmail.com",
+    "email": "admin@gmail.com",
+    "password": "$2a$10$nPnTHScA22gCeJZw/XRnKujKNGAXh7tJ8lSxMs/bCFietIBKQwjSS",
+    "admin": true
+  }
 ]
