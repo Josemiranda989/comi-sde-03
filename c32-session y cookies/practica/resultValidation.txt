@@ -1,0 +1,11 @@
+res.render('product-create-form', {errors: results.errors, oldData: req.body})
+
+
+			<% if (locals.errors) { %> 
+				<div>
+					<% errors.forEach(error => { %>
+						<p><%= error.msg %></p>
+					<% }) %>
+				</div>
+			<% } %>
+
