@@ -16,9 +16,9 @@ module.exports = {
         // Comparar Password con la DB && Email
         let userFound = users.find(user=> user.email == email)
 
-        // console.log('body--', req.body);
-        // console.log('userFound - ', userFound);
-        // console.log('Comparacion de password',bcryptjs.compareSync(password, userFound.password));
+        console.log('body--', req.body);
+        console.log('userFound - ', userFound);
+        console.log('Comparacion de password',bcryptjs.compareSync(password, userFound.password));
 
         if(userFound && bcryptjs.compareSync(password, userFound.password)){
             // Crear la sesión

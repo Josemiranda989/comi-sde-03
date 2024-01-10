@@ -4,6 +4,6 @@ module.exports = (req, res, next) =>{
         next()
     } else {
         // console.log('No estas logueado, volve al login');
-        res.redirect('/users/login')
+       return res.redirect('/users/login')
     }
 }

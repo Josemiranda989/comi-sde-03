@@ -60,6 +60,9 @@ const controller = {
 			// redireccionamos
 			res.redirect('/products')
 		} else {
+			if(req.file){
+				fs.unlinkSync(path.join(__dirname, '../../public/images/products', req.file.filename))
+			}
 			res.render('product-create-form', {errors: results.mapped(), oldData: req.body})
 		}
 	},
