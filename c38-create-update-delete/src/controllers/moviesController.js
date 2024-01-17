@@ -1,5 +1,6 @@
 const db = require('../database/models');
 const sequelize = db.sequelize;
+const Op = db.Sequelize.Op
 
 //Otra forma de llamar a los modelos
 const Movies = db.Movie;
@@ -96,6 +97,30 @@ const moviesController = {
     processDelete: async function (req, res) {
         try {
             await Movies.destroy({
+                where: { id: req.params.id }
+            })
+            res.redirect('/movies')
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+    trash: async (req, res) => {
+        try {
+            let movies = await Movies.findAll({
+                where: {
+                    deleted_at: {
+                        [Op.not]: null
+                    },
+                }, paranoid: false
+            })
+            res.render('trash.ejs', { movies })
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+    processRestore: async (req, res) => {
+        try {
+            await Movies.restore({
                 where: { id: req.params.id }
             })
             res.redirect('/movies')

@@ -17,5 +17,8 @@ router.put('/update/:id', moviesController.processUpdate);
 // Delete y process Delete
 router.get('/delete/:id', moviesController.delete);
 router.delete('/delete/:id', moviesController.processDelete);
+// process Restore
+router.get('/trash', moviesController.trash)
+router.get('/restore/:id', moviesController.processRestore)
 
 module.exports = router;
