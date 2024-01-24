@@ -1,4 +1,4 @@
-# Proyecto de Desarrollo Full Stack Node con Sequelize
+# Proyecto de Desarrollo Full Stack Node con Sequelize y MySQL
 
 Este proyecto es una aplicación Node.js con Sequelize para el desarrollo full stack. Incluye modelos para usuarios y países, así como seeders para poblar la base de datos con datos de ejemplo.
 
