@@ -1,0 +1,52 @@
+:root {
+    --primario: #bcec4c;
+    --secundario: #6cacdc;
+    --link: #2c7c44;
+    --bg-primario:#947c6c;
+    --bg-secundario:#b49c94;
+}
+
+.container {
+    background-color: var(--bg-secundario);
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;
+    gap:10px;
+    padding: 20px 0px;
+}
+
+.game__img {
+    width: 300px;
+}
+
+.game__detail {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game__description {
+    text-align: justify;
+}
+
+.game__price {
+    color: var(--link);
+    margin-top:10px;
+}
+
+.game__btn{
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: var(--link);
+    color: var(--primario);
+    margin-top:10px;
+    border: none;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+
+
