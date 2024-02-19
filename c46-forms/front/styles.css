@@ -1,0 +1,20 @@
+body {
+    background-color: beige;
+}
+
+.error {
+    color: tomato;
+    font-weight: 800;
+}
+
+.success {
+    color: rgb(0, 129, 0);
+}
+
+.error__list {
+    padding: 10px;
+    color: rgb(153, 133, 130);
+    font-size: 0.5rem;
+    list-style: none;
+    border: 2px solid rgb(175, 116, 116);
+}
