@@ -9,3 +9,5 @@ export const SimpleProps = ({ nombre }) => {
     </div>
   );
 };
+
+// data.pokemon?.name
