@@ -37,7 +37,10 @@
 }
 
 .card {
-  padding: 2em;
+  width: 250px;
+  padding: .2em;
+  background-color: #888;
+  text-overflow: ellipsis;
 }
 
 .read-the-docs {
@@ -48,9 +51,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 }
 
 .container img {
-  width: 300px;
+  width: 70%;
 }

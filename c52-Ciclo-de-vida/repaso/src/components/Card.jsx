@@ -6,7 +6,7 @@ export class Card extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='card'>
                 <h4>{this.props.title}</h4>
                 <img src={this.props.img} alt="imagen-anime" />
             </div>

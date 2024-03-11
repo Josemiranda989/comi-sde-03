@@ -8,7 +8,7 @@ export class Counter extends Component {
         }
     }
 
-    increment = () => {
+    handleClick = () => {
         // console.log('hiciste click');
         this.setState({
             count: this.state.count + 1
@@ -19,7 +19,7 @@ export class Counter extends Component {
         return (
             <>
                 <h3>Hiciste {this.state.count} veces click!</h3>
-                <button onClick={this.increment}>Hacé click aquí</button>
+                <button onClick={this.handleClick}>Hacé click aquí</button>
             </>
         )
     }

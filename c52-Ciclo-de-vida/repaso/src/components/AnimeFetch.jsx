@@ -8,6 +8,7 @@ export default class AnimeFetch extends Component {
         this.state = {
             animeList: null,
             cargando: true,
+            error: null
         }
     }
 
@@ -24,18 +25,29 @@ export default class AnimeFetch extends Component {
                 })
 
             })
-            .catch(e => console.log(e.message))
+            .catch(e => {
+                console.log(e);
+                this.setState({
+                    error: e, cargando: false
+                })
+            })
     }
 
     render() {
-        if (this.state.cargando) {
+        const { animeList, cargando, error } = this.state
+
+
+        if (cargando) {
             return <p>Cargando...</p>
         }
 
+        if (error) {
+            return <p>Error: {error.message}</p>
+        }
 
         return (
             <div className='container'>
-                {this.state.animeList?.map((anime) => {
+                {animeList?.map((anime) => {
                     return <Card
                         key={anime.mal_id}
                         title={anime.title}
