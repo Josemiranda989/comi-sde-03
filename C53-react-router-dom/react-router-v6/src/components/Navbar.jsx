@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import logo from "../assets/react.svg";
 
 export function Navbar() {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   return (
     <nav className="navbar">
       <Link to="/">
@@ -22,6 +26,9 @@ export function Navbar() {
         </li>
         <li>
           <Link to="/state-less">StatelessClass</Link>
+        </li>
+        <li>
+          <Link to={`/test/${getRandomInt(20)}`}>UseParamsRandom</Link>
         </li>
       </ul>
     </nav>

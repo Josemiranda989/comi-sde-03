@@ -5,7 +5,7 @@ import { Form } from "./components/Form";
 import { StateFullSimpleClass } from "./components/StateFullSimpleClass";
 import { StatelessClass } from "./components/StatelessClass";
 import { Navbar } from "./components/Navbar";
-import { Test } from "./components/Test";
+import { Test } from "./components/useParamsExample";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
