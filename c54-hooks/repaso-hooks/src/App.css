@@ -37,6 +37,9 @@
   padding: 2em;
   background-color: #888;
   margin: 0.5em;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
 }
 
 .read-the-docs {
